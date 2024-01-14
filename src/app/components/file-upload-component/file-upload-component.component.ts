@@ -14,6 +14,7 @@ interface UploadEvent {
   providers: [MessageService],
 })
 export class FileUploadComponentComponent {
+  message = 'hey';
   uploadedFiles: any[] = [];
   maxSizeFile = 1000000;
 
@@ -25,7 +26,21 @@ export class FileUploadComponentComponent {
   onUpload(event: UploadEvent) {
     for (let file of event.files) {
       this.uploadedFiles.push(file);
-      this.fileAnalyzerService.analyze(file);
+      this.fileAnalyzerService.analyze(file).subscribe({
+        next: (data) => {
+          console.log('la data es:');
+          console.log(data.data);
+          this.message = data.data;
+        },
+        error: (error) => {
+          this.uploadedFiles.push(error);
+        },
+      });
+      /* this.fileAnalyzerService.analyze(file).subscribe((data) => {
+        console.log('#RECIBIDO');
+        console.log(data);
+        this.uploadedFiles.push(data);
+      }); */
     }
 
     this.messageService.add({

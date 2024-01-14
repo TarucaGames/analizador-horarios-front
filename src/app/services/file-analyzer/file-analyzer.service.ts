@@ -9,11 +9,12 @@ export class FileAnalyzerService {
 
   public analyze(file: File) {
     console.log(file.name + ' | ' + file.size);
-    const response = this.http
-      .get('https://analizador-horarios.vercel.app/api/index')
-      .subscribe((data) => {
-        console.log('#RECIBIDO');
-        console.log(data);
-      });
+    //return this.http.get('http://localhost:3000/api/index');
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<any>(
+      'https://analizador-horarios.vercel.app/api/index',
+      formData
+    );
   }
 }
