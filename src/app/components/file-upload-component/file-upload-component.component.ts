@@ -29,7 +29,7 @@ export class FileUploadComponentComponent {
     private fileAnalyzerService: FileAnalyzerService,
     private productService: ProductServiceService
   ) {
-    this.initSchedule(true);
+    //this.initSchedule(true);
   }
 
   ngOnInit() {

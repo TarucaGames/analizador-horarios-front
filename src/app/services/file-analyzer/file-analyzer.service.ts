@@ -14,7 +14,7 @@ export class FileAnalyzerService {
     const formData = new FormData();
     formData.append('file', file);
     return this.http.post<ServerResponse>(
-      'http://localhost:3000/api/index',
+      'https://analizador-horarios.vercel.app/api/index',
       formData
     );
   }
