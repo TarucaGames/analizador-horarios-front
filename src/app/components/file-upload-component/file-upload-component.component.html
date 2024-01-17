@@ -1,23 +1,89 @@
 <div class="card flex justify-content-center">
-  <p-toast></p-toast>
-  <p-fileUpload
-    name="demo[]"
-    chooseLabel="Añadir"
-    uploadLabel="Analizar"
-    cancelLabel="Cancelar"
-    url="https://www.primefaces.org/cdn/api/upload.php"
-    (onUpload)="onUpload($any($event))"
-    [multiple]="true"
-    accept=".xlsx"
-    [maxFileSize]="maxSizeFile"
-  >
-    <ng-template pTemplate="content">
-      <ul *ngIf="uploadedFiles.length">
-        <li *ngFor="let file of uploadedFiles">
-          {{ file.name }} - {{ file.size }} bytes
-        </li>
-      </ul>
-    </ng-template>
-  </p-fileUpload>
-  <span>Resultado: {{ message }}</span>
+  <div class="flex-row">
+    <p-toast></p-toast>
+    <p-fileUpload
+      name="demo[]"
+      chooseLabel="Añadir"
+      uploadLabel="Analizar"
+      cancelLabel="Cancelar"
+      url="https://www.primefaces.org/cdn/api/upload.php"
+      (onUpload)="onUpload($any($event))"
+      [multiple]="true"
+      accept=".xlsx"
+      [maxFileSize]="maxSizeFile"
+    >
+      <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFiles.length">
+          <li *ngFor="let file of uploadedFiles">
+            {{ file.name }} - {{ file.size }} bytes
+          </li>
+        </ul>
+      </ng-template>
+    </p-fileUpload>
+    <p-tabView *ngIf="scheduleFile">
+      <p-tabPanel
+        *ngFor="let week of scheduleFile.weeks"
+        [header]="week.name ?? '-'"
+      >
+        <ng-template pTemplate="header">
+          <span class="pr-3">{{ week.name }}</span>
+          <i
+            *ngIf="week.hasErrors"
+            class="pi pi-exclamation-triangle text-red-500"
+          ></i>
+        </ng-template>
+        <div class="card">
+          <p-dataView #dv [value]="week.days">
+            <ng-template pTemplate="list" let-days>
+              <div class="grid grid-nogutter">
+                <div class="col-12" *ngFor="let day of days; let first = first">
+                  <div
+                    class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4"
+                    [ngClass]="{ 'border-top-1 surface-border': !first }"
+                  >
+                    <div
+                      class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
+                    >
+                      <div
+                        class="flex flex-column align-items-center sm:align-items-start gap-3"
+                      >
+                        <div class="flex-row align-items-center gap-3">
+                          <div class="text-2xl font-bold text-900">
+                            {{ day.name }}
+                          </div>
+                          <div
+                            *ngIf="day.errors.length !== 0"
+                            class="text-red-500 pt-3"
+                          >
+                            <span class="pr-3">{{ day.errors[0] }}</span>
+                            <i
+                              class="pi pi-exclamation-triangle text-red-500"
+                            ></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2"
+                      >
+                        <span
+                          *ngIf="!day.isFree"
+                          class="text-2xl font-semibold"
+                          >{{ day.start + " - " + day.end }}</span
+                        >
+                        <p-tag
+                          *ngIf="day.isFree"
+                          value="LIBRE"
+                          severity="success"
+                        ></p-tag>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </p-dataView>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
 </div>
