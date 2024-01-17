@@ -29,6 +29,12 @@ dependencies:
   '@angular/router':
     specifier: ^16.2.0
     version: 16.2.12(@angular/common@16.2.12)(@angular/core@16.2.12)(@angular/platform-browser@16.2.12)(rxjs@7.8.1)
+  primeflex:
+    specifier: ^3.3.1
+    version: 3.3.1
+  primeicons:
+    specifier: ^6.0.1
+    version: 6.0.1
   primeng:
     specifier: ^17.3.2
     version: 17.3.2(@angular/common@16.2.12)(@angular/core@16.2.12)(@angular/forms@16.2.12)(rxjs@7.8.1)(zone.js@0.13.3)
@@ -5844,6 +5850,14 @@ packages:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
     dev: true
+
+  /primeflex@3.3.1:
+    resolution: {integrity: sha512-zaOq3YvcOYytbAmKv3zYc+0VNS9Wg5d37dfxZnveKBFPr7vEIwfV5ydrpiouTft8MVW6qNjfkaQphHSnvgQbpQ==}
+    dev: false
+
+  /primeicons@6.0.1:
+    resolution: {integrity: sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==}
+    dev: false
 
   /primeng@17.3.2(@angular/common@16.2.12)(@angular/core@16.2.12)(@angular/forms@16.2.12)(rxjs@7.8.1)(zone.js@0.13.3):
     resolution: {integrity: sha512-QFnh2YWTE3jeyfMLKpLHY/mSI4z1KZbXWDS+fFJdwVut8+E9iSHxDVLPF0fHyljKByAqvUF4fP2/F3JSYdF6cg==}
