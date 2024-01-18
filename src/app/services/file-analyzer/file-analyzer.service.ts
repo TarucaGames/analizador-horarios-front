@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ServerResponse } from 'src/app/models/server-response';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,6 @@ export class FileAnalyzerService {
     //return this.http.get('http://localhost:3000/api/index');
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post<ServerResponse>(
-      'https://analizador-horarios.vercel.app/api/index',
-      formData
-    );
+    return this.http.post<ServerResponse>(environment.backendUrl, formData);
   }
 }
