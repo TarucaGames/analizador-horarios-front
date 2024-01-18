@@ -4,6 +4,7 @@ import { Product } from 'src/app/models/product';
 import { ScheduleFile } from 'src/app/models/schedule-file';
 import { FileAnalyzerService } from 'src/app/services/file-analyzer/file-analyzer.service';
 import { ProductServiceService } from 'src/app/services/product-service/product-service.service';
+import { environment } from 'src/environments/environment';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -23,12 +24,14 @@ export class FileUploadComponentComponent {
   maxSizeFile = 1000000;
   products!: Product[];
   scheduleFile?: ScheduleFile;
+  backendUrl?: string;
 
   constructor(
     private messageService: MessageService,
     private fileAnalyzerService: FileAnalyzerService,
     private productService: ProductServiceService
   ) {
+    this.backendUrl = environment.backendUrl;
     //this.initSchedule(true);
   }
 
@@ -83,6 +86,10 @@ export class FileUploadComponentComponent {
       summary: 'File Uploaded',
       detail: '',
     });
+  }
+
+  onUpload2(event: UploadEvent) {
+    console.log(event);
   }
 
   initSchedule(withErrors: boolean = false) {
