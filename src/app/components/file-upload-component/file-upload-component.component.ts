@@ -4,7 +4,6 @@ import { Product } from 'src/app/models/product';
 import { ScheduleFile } from 'src/app/models/schedule-file';
 import { FileAnalyzerService } from 'src/app/services/file-analyzer/file-analyzer.service';
 import { ProductServiceService } from 'src/app/services/product-service/product-service.service';
-import { environment } from 'src/environments/environment';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -31,7 +30,6 @@ export class FileUploadComponentComponent {
     private productService: ProductServiceService
   ) {
     //this.initSchedule(true);
-    console.log('Está en entorno: ' + environment.title);
   }
 
   ngOnInit() {
