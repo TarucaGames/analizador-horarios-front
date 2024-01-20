@@ -39,57 +39,17 @@ export class FileUploadComponentComponent {
     this.productService.getProducts().then((data) => (this.products = data));
   }
 
-  /**
-   *
-   * @param product
-   * @returns 'success'
-   */
-  getSeverity(product: Product): string | undefined {
-    switch (product.inventoryStatus) {
-      case 'INSTOCK':
-        return 'success';
-
-      case 'LOWSTOCK':
-        return 'warning';
-
-      case 'OUTOFSTOCK':
-        return 'danger';
-
-      default:
-        return undefined;
-    }
-  }
-
   onUpload(event: UploadEvent) {
-    for (let file of event.files) {
-      this.uploadedFiles.push(file);
-      this.fileAnalyzerService.analyze(file).subscribe({
-        next: (data) => {
-          console.log('la data es:');
-          console.log(data.data);
-          this.scheduleFile = data.data;
-          this.errorMessage = data.errors?.join('.');
-        },
-        error: (error) => {
-          this.uploadedFiles.push(error);
-        },
+    const originalEvent: any = event.originalEvent;
+    this.scheduleFile = originalEvent.body.data;
+    if (originalEvent.body.errors.length !== 0) {
+      const error: string = originalEvent.body.errors[0];
+      this.messageService.add({
+        severity: 'warning',
+        summary: 'Importante',
+        detail: error,
       });
-      /* this.fileAnalyzerService.analyze(file).subscribe((data) => {
-        console.log('#RECIBIDO');
-        console.log(data);
-        this.uploadedFiles.push(data);
-      }); */
     }
-
-    this.messageService.add({
-      severity: 'info',
-      summary: 'File Uploaded',
-      detail: '',
-    });
-  }
-
-  onUpload2(event: UploadEvent) {
-    console.log(event);
   }
 
   initSchedule(withErrors: boolean = false) {
