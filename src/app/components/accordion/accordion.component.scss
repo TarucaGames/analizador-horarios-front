@@ -1,0 +1,21 @@
+.day-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    "day-name day-time"
+    "day-message day-message";
+  padding: 5px;
+}
+
+.day-name {
+  grid-area: day-name;
+}
+
+.day-time {
+  grid-area: day-time;
+}
+
+.day-message {
+  grid-area: day-message;
+  padding-top: 5px;
+}

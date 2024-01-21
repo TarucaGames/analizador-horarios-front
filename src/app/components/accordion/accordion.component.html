@@ -1,0 +1,57 @@
+<div *ngIf="scheduleFile">
+  <p-accordion [activeIndex]="0" *ngFor="let week of scheduleFile.weeks">
+    <p-accordionTab [header]="week.name">
+      <p-dataView #dv [value]="week.days">
+        <ng-template pTemplate="list" let-days>
+          <div *ngFor="let day of days; let first = first">
+            <div [ngClass]="{ 'border-top-1 surface-border': !first }">
+              <div class="day-container">
+                <div class="day-name font-bold">{{ day.name }}</div>
+                <div class="day-time text-right">
+                  <div *ngIf="!day.isFree" class="text-right">
+                    {{ day.start + " - " + day.end }}
+                  </div>
+                  <div *ngIf="day.isFree">
+                    <p-tag value="LIBRE" severity="success"></p-tag>
+                  </div>
+                </div>
+                <div *ngIf="day.errors.length !== 0" class="day-message">
+                  <span class="pr-2 text-red-500">{{ day.errors[0] }}</span>
+                  <i class="pi pi-exclamation-triangle text-red-500"></i>
+                </div>
+              </div>
+              <!-- <div
+                class="flex flex-row sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
+              >
+                <div
+                  class="flex flex-row align-items-center sm:align-items-start gap-3"
+                >
+                  <div>
+                    {{ day.name }}
+                  </div>
+                  <div
+                    *ngIf="day.errors.length !== 0"
+                    class="text-red-500 pt-3"
+                  >
+                    <span class="pr-3">{{ day.errors[0] }}</span>
+                    <i class="pi pi-exclamation-triangle text-red-500"></i>
+                  </div>
+                </div>
+                <div>
+                  <span *ngIf="!day.isFree">{{
+                    day.start + " - " + day.end
+                  }}</span>
+                  <p-tag
+                    *ngIf="day.isFree"
+                    value="LIBRE"
+                    severity="success"
+                  ></p-tag>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView>
+    </p-accordionTab>
+  </p-accordion>
+</div>

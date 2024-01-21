@@ -1,4 +1,4 @@
-<div class="card flex justify-content-center">
+<div class="card justify-content-center">
   <div class="flex-row">
     <p-toast></p-toast>
     <div class="text-center pb-5">
@@ -13,8 +13,8 @@
         [maxFileSize]="maxSizeFile"
       ></p-fileUpload>
     </div>
-
-    <p-tabView *ngIf="scheduleFile">
+    <app-accordion [scheduleFile]="scheduleFile"></app-accordion>
+    <!-- <p-tabView *ngIf="scheduleFile">
       <p-tabPanel
         *ngFor="let week of scheduleFile.weeks"
         [header]="week.name ?? '-'"
@@ -78,6 +78,6 @@
           </p-dataView>
         </div>
       </p-tabPanel>
-    </p-tabView>
+    </p-tabView> -->
   </div>
 </div>

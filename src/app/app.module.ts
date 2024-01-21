@@ -10,11 +10,17 @@ import { ToastModule } from 'primeng/toast';
 import { DataViewModule } from 'primeng/dataview';
 import { RatingModule } from 'primeng/rating';
 import { TagModule } from 'primeng/tag';
+import { AccordionModule } from 'primeng/accordion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductServiceService } from './services/product-service/product-service.service';
+import { AccordionComponent } from './components/accordion/accordion.component';
 
 @NgModule({
-  declarations: [AppComponent, FileUploadComponentComponent],
+  declarations: [
+    AppComponent,
+    FileUploadComponentComponent,
+    AccordionComponent,
+  ],
   imports: [
     BrowserModule,
     ButtonModule,
@@ -27,6 +33,7 @@ import { ProductServiceService } from './services/product-service/product-servic
     TagModule,
     FormsModule,
     ReactiveFormsModule,
+    AccordionModule,
   ],
   providers: [ProductServiceService],
   bootstrap: [AppComponent],
