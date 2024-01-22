@@ -7,12 +7,20 @@
         name="file"
         chooseLabel="Añadir"
         [url]="backendUrl"
+        (onBeforeUpload)="onBeforeUpload()"
         (onUpload)="onUpload($any($event))"
         [auto]="true"
         accept=".xlsx"
         [maxFileSize]="maxSizeFile"
       ></p-fileUpload>
     </div>
+    <div class="text-center">
+      <p-progressSpinner
+        styleClass="custom-spinner w-6rem h-6rem"
+        *ngIf="isLoading"
+      ></p-progressSpinner>
+    </div>
+
     <app-accordion [scheduleFile]="scheduleFile"></app-accordion>
     <!-- <p-tabView *ngIf="scheduleFile">
       <p-tabPanel

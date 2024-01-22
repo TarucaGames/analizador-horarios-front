@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ScheduleFile } from 'src/app/models/schedule-file';
+import { isDevMode } from '@angular/core';
 
 @Component({
   selector: 'app-accordion',
@@ -10,8 +11,10 @@ export class AccordionComponent {
   @Input()
   scheduleFile?: ScheduleFile;
 
-  constructor() {
-    this.initSchedule(true);
+  ngOnInit() {
+    if (isDevMode()) {
+      this.initSchedule(true);
+    }
   }
 
   initSchedule(withErrors: boolean = false) {

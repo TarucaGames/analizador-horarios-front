@@ -25,6 +25,7 @@ export class FileUploadComponentComponent {
   products!: Product[];
   scheduleFile?: ScheduleFile;
   backendUrl?: string;
+  isLoading: boolean = false;
 
   constructor(
     private messageService: MessageService,
@@ -39,7 +40,12 @@ export class FileUploadComponentComponent {
     this.productService.getProducts().then((data) => (this.products = data));
   }
 
+  onBeforeUpload() {
+    this.isLoading = true;
+  }
+
   onUpload(event: UploadEvent) {
+    this.isLoading = false;
     const originalEvent: any = event.originalEvent;
     this.scheduleFile = originalEvent.body.data;
     if (originalEvent.body.errors.length !== 0) {

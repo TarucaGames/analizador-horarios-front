@@ -14,6 +14,8 @@ import { AccordionModule } from 'primeng/accordion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductServiceService } from './services/product-service/product-service.service';
 import { AccordionComponent } from './components/accordion/accordion.component';
+import { DividerModule } from 'primeng/divider';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { AccordionComponent } from './components/accordion/accordion.component';
     FormsModule,
     ReactiveFormsModule,
     AccordionModule,
+    DividerModule,
+    ProgressSpinnerModule,
   ],
   providers: [ProductServiceService],
   bootstrap: [AppComponent],
