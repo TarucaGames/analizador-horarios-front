@@ -1,4 +1,8 @@
 <div *ngIf="scheduleFile">
+  <p-divider></p-divider>
+  <div class="font-bold text-xl p-3">
+    {{ scheduleFile.name?.replace(".xlsx", "") }}
+  </div>
   <p-accordion *ngFor="let week of scheduleFile.weeks">
     <p-accordionTab>
       <ng-template pTemplate="header">
@@ -26,8 +30,8 @@
                   </div>
                 </div>
                 <div *ngIf="day.errors.length !== 0" class="day-message">
-                  <span class="pr-2 text-red-500">{{ day.errors[0] }}</span>
                   <i class="pi pi-exclamation-triangle text-red-500"></i>
+                  <span class="pl-2 text-red-500">{{ day.errors[0] }}</span>
                 </div>
               </div>
             </div>
