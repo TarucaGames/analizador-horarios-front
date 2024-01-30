@@ -20,7 +20,7 @@
           <div *ngFor="let day of days; let first = first">
             <div [ngClass]="{ 'border-top-1 surface-border': !first }">
               <div class="day-container">
-                <div class="day-name">{{ day.name }}</div>
+                <div class="day-name">{{ day.name }} {{ day.date }}</div>
                 <div class="day-time text-right">
                   <div *ngIf="!day.isFree" class="text-right">
                     {{ day.start + " - " + day.end }}
