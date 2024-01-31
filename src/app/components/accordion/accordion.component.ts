@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ScheduleFile } from 'src/app/models/schedule-file';
 import { isDevMode } from '@angular/core';
+import { Day } from 'src/app/models/day';
+import { DayType } from 'src/app/models/day-type-enum';
 
 @Component({
   selector: 'app-accordion',
@@ -11,10 +13,16 @@ export class AccordionComponent {
   @Input()
   scheduleFile?: ScheduleFile;
 
+  DayType = DayType;
+
   ngOnInit() {
     if (isDevMode()) {
       this.initSchedule(true);
     }
+  }
+
+  isWorkingDay(day: Day) {
+    return day.type === DayType.Working;
   }
 
   initSchedule(withErrors: boolean = false) {
@@ -28,59 +36,73 @@ export class AccordionComponent {
           days: [
             {
               id: undefined,
+              date: '01-01',
               name: 'LUNES',
               start: '15:00',
               end: '23:15',
               isFree: false,
               errors: [],
+              type: DayType.Holiday,
             },
             {
               id: undefined,
+              date: '02-01',
               name: 'MARTES',
               start: '15:00',
               end: '23:15',
               isFree: false,
               errors: [],
+              type: DayType.Working,
             },
             {
               id: undefined,
+              date: '03-01',
               name: 'MIÉRCOLES',
               start: '15:00',
               end: '23:15',
               isFree: false,
               errors: [],
+              type: DayType.Working,
             },
             {
               id: undefined,
+              date: '04-01',
               name: 'JUEVES',
               start: '14:00',
               end: '20:30',
               isFree: false,
               errors: [],
+              type: DayType.Working,
             },
             {
               id: undefined,
+              date: '05-01',
               name: 'VIERNES',
               start: '09:00',
               end: '15:15',
               isFree: false,
               errors: [],
+              type: DayType.Working,
             },
             {
               id: undefined,
+              date: '06-01',
               name: 'SÁBADO',
               start: undefined,
               end: undefined,
               isFree: true,
               errors: [],
+              type: DayType.Free,
             },
             {
               id: undefined,
+              date: '07-01',
               name: 'DOMINGO',
               start: undefined,
               end: undefined,
               isFree: true,
               errors: [],
+              type: DayType.Free,
             },
           ],
           totalHours: 37.5,

@@ -22,11 +22,17 @@
               <div class="day-container">
                 <div class="day-name">{{ day.name }} {{ day.date }}</div>
                 <div class="day-time text-right">
-                  <div *ngIf="!day.isFree" class="text-right">
+                  <div *ngIf="day.type === DayType.Working" class="text-right">
                     {{ day.start + " - " + day.end }}
                   </div>
-                  <div *ngIf="day.isFree">
+                  <div *ngIf="day.type === DayType.Free">
                     <p-tag value="LIBRE" severity="success"></p-tag>
+                  </div>
+                  <div *ngIf="day.type === DayType.Holiday">
+                    <p-tag value="FERIADO" severity="warning"></p-tag>
+                    <div class="day-holiday">
+                      {{ day.start + " - " + day.end }}
+                    </div>
                   </div>
                 </div>
                 <div *ngIf="day.errors.length !== 0" class="day-message">

@@ -1,3 +1,5 @@
+import { DayType } from './day-type-enum';
+
 export interface Day {
   id?: string;
   name?: string;
@@ -6,4 +8,5 @@ export interface Day {
   end?: string;
   errors?: Array<string>;
   isFree?: boolean;
+  type?: DayType;
 }
